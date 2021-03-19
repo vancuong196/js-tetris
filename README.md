@@ -1,1 +1,1 @@
-get a cup of coffee, open a code editor of choose, happy coding!
+get a cup of coffee, open a code editor of choice, happy coding!
