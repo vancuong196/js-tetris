@@ -170,7 +170,7 @@ const Z = [
 
 const colors = [
     "1111111",
-    "#ffffff",
+    "#ff0000",
     "#ff00ff",
     "#ffff00",
     "#000000",

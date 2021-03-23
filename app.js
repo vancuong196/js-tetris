@@ -51,7 +51,7 @@ function rePaintGameBoard() {
             if (value > 0) {
                 drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, colors[value]);
             } else {
-                drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff0000");
+                drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
             }
         })
     });
@@ -133,7 +133,7 @@ function onKeyDown(e) {
             break;
         case 39:
             // try to set state to move right when right key pressed
-            if (currentBlock.pos.x < WIDTH_TOTAL_BLOCK && checkIfCanMoveRight(currentBlock)) {
+            if (currentBlock.pos.x < WIDTH_TOTAL_BLOCK-1 && checkIfCanMoveRight(currentBlock)) {
                 moveDirection = 1;
             } else {
                 moveDirection = 0;
@@ -328,7 +328,7 @@ function checkIfCanMoveDown(block) {
     var y3 = getMax(ry3[2], ry2[2], ry1[2]);
     var points = [{ x: 0, y: y1 }, { x: 1, y: y2 }, { x: 2, y: y3 }]
     points.forEach(maxPoint => {
-        if (maxPoint.y > 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x, block.pos.y + 1 + maxPoint.y)) {
+        if (maxPoint.y >= 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x, block.pos.y + 1 + maxPoint.y)) {
             result = false;
         }
     });
@@ -350,7 +350,7 @@ function checkIfCanMoveRight(block) {
     var x3 = getMax(ry3[2], ry3[1], ry3[0]);
     var points = [{ x: x1, y: 0 }, { x: x2, y: 1 }, { x: x3, y: 2 }]
     points.forEach(maxPoint => {
-        if (maxPoint.x > 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x + 1, block.pos.y + maxPoint.y)) {
+        if (maxPoint.x >= 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x + 1, block.pos.y + maxPoint.y)) {
             result = false;
         }
     });
@@ -372,7 +372,7 @@ function checkIfCanMoveLeft(block) {
     var x3 = getMin(ry3[2], ry3[1], ry3[0]);
     var points = [{ x: x1, y: 0 }, { x: x2, y: 1 }, { x: x3, y: 2 }]
     points.forEach(maxPoint => {
-        if (maxPoint.x > 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x - 1, block.pos.y + maxPoint.y)) {
+        if (maxPoint.x >= 0 && checkIfStaticPointExist(block.pos.x + maxPoint.x - 1, block.pos.y + maxPoint.y)) {
             result = false;
         }
     });
@@ -442,9 +442,9 @@ function drawAnimationOnScored(y) {
         var xOffset = (x) * BLOCK_SIZE + baseX;
         var yOffset = (y) * BLOCK_SIZE + baseY;
         if (value > 0) {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
-        } else {
             drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff0000");
+        } else {
+            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
         }
     })
     sleep(50);
@@ -454,7 +454,7 @@ function drawAnimationOnScored(y) {
         if (value > 0) {
             drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#f9e40b");
         } else {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff0000");
+            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
         }
     });
     sleep(100);
@@ -462,9 +462,9 @@ function drawAnimationOnScored(y) {
         var xOffset = (x) * BLOCK_SIZE + baseX;
         var yOffset = (y) * BLOCK_SIZE + baseY;
         if (value > 0) {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
+            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff00ff");
         } else {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff0000");
+            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
         }
     })
 }
