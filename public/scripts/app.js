@@ -191,7 +191,7 @@ function updateFallingBlock() {
         score();
         currentBlock = getRandomBlock();
         if (checkGameOver(currentBlock)){
-            alert("game over");
+            //alert("game over");
         }
         return;
     }
