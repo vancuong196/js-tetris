@@ -20,7 +20,7 @@ var currentBlock = undefined;
     /**
      * initialize webapp when html page is loaded
      */
-    window.addEventListener('load', (event) => {
+    window.addEventListener(LOAD_EVENT, (event) => {
         initApplication();
         updateUserInterface();
     });
@@ -28,16 +28,16 @@ var currentBlock = undefined;
     /**
      * we have to recalculate size, repaint all blocks when size is changing
      */
-    window.addEventListener('resize', (event) => {
+    window.addEventListener(RESIZE_EVENT, (event) => {
         updateUserInterface();
     });
 
     /**
      * add events to control the falling block
      */
-    document.addEventListener("keydown", onKeyDown, false);
+    document.addEventListener(KEYDOWN_EVENT, onKeyDown, false);
 
-    document.addEventListener("keyup", onKeyUp, false);
+    document.addEventListener(KEYUP_EVENT, onKeyUp, false);
 }
 
 /**
@@ -51,7 +51,7 @@ function rePaintGameBoard() {
             if (value > 0) {
                 drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, colors[value]);
             } else {
-                drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
+                drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, BACKGROUND_COLOR);
             }
         })
     });
@@ -128,9 +128,6 @@ function onKeyDown(e) {
                 moveDirection = 0;
             }
             break;
-        case 16:
-            console.log("up");
-            break;
         case 39:
             // try to set state to move right when right key pressed
             if (currentBlock.pos.x < WIDTH_TOTAL_BLOCK-1 && checkIfCanMoveRight(currentBlock)) {
@@ -205,8 +202,8 @@ function updateFallingBlock() {
  * first run initialize
  */
 function initApplication() {
-    canvas = document.getElementById("myCanvas");
 
+    canvas = document.getElementById(CANVAS_ELEMENT_NAME);
     updateWindowSize();
     initializeGameData();
 
@@ -403,11 +400,7 @@ function score() {
         var row = gameBoardBitmap[i];
         var col = row.find(x => x == 0);
         if (col == undefined) {
-            //alert('haha');
             drawAnimationOnScored(i);
-            for (var j = 0; j < WIDTH_TOTAL_BLOCK; j++) {
-                row[j] = 0;
-            }
             moveBitMapDowOneRow(i);
             score();
         }
@@ -437,35 +430,25 @@ function moveBitMapDowOneRow(fromRow) {
  * @param {row that will be remove} y 
  */
 function drawAnimationOnScored(y) {
+
     var row = gameBoardBitmap[y];
+    var yOffset = (y) * BLOCK_SIZE + baseY;
+
     row.forEach((value, x) => {
         var xOffset = (x) * BLOCK_SIZE + baseX;
-        var yOffset = (y) * BLOCK_SIZE + baseY;
-        if (value > 0) {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff0000");
-        } else {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
-        }
+        drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, ANIMATION_COLOR_1);
     })
+
     sleep(50);
     row.forEach((value, x) => {
         var xOffset = (x) * BLOCK_SIZE + baseX;
-        var yOffset = (y) * BLOCK_SIZE + baseY;
-        if (value > 0) {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#f9e40b");
-        } else {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
-        }
+        drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, ANIMATION_COLOR_2);
     });
     sleep(100);
+
     row.forEach((value, x) => {
         var xOffset = (x) * BLOCK_SIZE + baseX;
-        var yOffset = (y) * BLOCK_SIZE + baseY;
-        if (value > 0) {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ff00ff");
-        } else {
-            drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, "#ffffff");
-        }
+        drawRect(canvas, xOffset, yOffset, BLOCK_SIZE, BLOCK_SIZE, ANIMATION_COLOR_3);
     })
 }
 

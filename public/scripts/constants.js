@@ -177,3 +177,13 @@ const colors = [
     "#00ff00",
     "#00ffff"
 ]
+const CANVAS_ELEMENT_NAME = "myCanvas";
+const BACKGROUND_COLOR = "#ffffff";
+const ANIMATION_COLOR_1 = "#ff0000";
+const ANIMATION_COLOR_2 = "#00ff00";
+const ANIMATION_COLOR_3 = "#ff00ff";
+const KEYUP_EVENT = "keyup";
+const KEYDOWN_EVENT = "keydown";
+const RESIZE_EVENT = "resize";
+const LOAD_EVENT = "load";
+const BLACK_COLOR = "#000000";

@@ -46,7 +46,7 @@ function getMin(n3,n2,n1){
  */
 function drawLine(canvas, x1, y1, x2, y2) {
     var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = BLACK_COLOR;
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
