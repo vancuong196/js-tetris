@@ -177,6 +177,7 @@ const colors = [
     "#00ff00",
     "#00ffff"
 ]
+
 const CANVAS_ELEMENT_NAME = "myCanvas";
 const BACKGROUND_COLOR = "#ffffff";
 const ANIMATION_COLOR_1 = "#ff0000";
